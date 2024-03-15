@@ -1,0 +1,80 @@
+<html lang="en">
+
+<head>
+    <title>Карта ААСК</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="external/jquery/jquery-3.7.1.js"></script>
+    <script type="text/javascript" src="external/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="floors-data.js"></script>
+    <link rel="stylesheet" href="external/jquery-ui/jquery-ui.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="theme-white">
+
+    <div class="interface-container">
+        <p style="z-index: 2; position: relative;">AS</p>
+    </div>
+
+    <div id="canvas" class="canvas-container">
+        <div id="map">
+            <svg id="f1" class="floor" width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+                <image id="bg" href="images/f-1.png"></image>
+                <g id="r101" class="room" tabindex="0">
+                    <polygon class="st0" points="10,10 10,110 110,110 110,10"></polygon>
+                    <text x="60" y="60">101</text>
+                </g>
+                <g id="r102" class="room" tabindex="0">
+                    <polygon class="st0" points="110,110 110,210 210,210 210,110"></polygon>
+                    <text x="160" y="160">102</text>
+                </g>
+            </svg>
+            <svg id="f2" class="floor hide" width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+                <image id="bg" href="images/f-1.png"></image>
+                <g id="r201" class="room" tabindex="0">
+                    <polygon class="st0" points="10,10 10,110 110,110 110,10"></polygon>
+                    <text x="60" y="60">201</text>
+                </g>
+                <g id="r202" class="room" tabindex="0">
+                    <polygon class="st0" points="110,110 110,210 210,210 210,110"></polygon>
+                    <text x="160" y="160">202</text>
+                </g>
+            </svg>
+            <svg id="f3" class="floor hide" width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+                <image id="bg" href="images/f-1.png"></image>
+                <g id="r301" class="room" tabindex="0">
+                    <polygon class="st0" points="10,10 10,110 110,110 110,10"></polygon>
+                    <text x="60" y="60">301</text>
+                </g>
+                <g id="r302" class="room" tabindex="0">
+                    <polygon class="st0" points="110,110 110,210 210,210 210,110"></polygon>
+                    <text x="160" y="160">302</text>
+                </g>
+            </svg>
+            <svg id="f4" class="floor hide" width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+                <image id="bg" href="images/f-1.png"></image>
+                <g id="r401" class="room" tabindex="0">
+                    <polygon class="st0" points="10,10 10,110 110,110 110,10"></polygon>
+                    <text x="60" y="60">401</text>
+                </g>
+                <g id="r402" class="room" tabindex="0">
+                    <polygon class="st0" points="110,110 110,210 210,210 210,110"></polygon>
+                    <text x="160" y="160">402</text>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <div class="drawer-container">
+        <img src="" alt="">
+
+    </div>
+    
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>

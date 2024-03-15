@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+/* = Стили интерфейса ================================== *\
+\* ===================================================== */
+
+.interface-container {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    height: 48px;
+    background-color: #d75456;
+}
+
+/* = Стили карты ======================================= *\
+\* ===================================================== */
+
+.canvas-container {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 48px);
+    margin-top: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+#map {
+    float: left;
+    height: 800px;
+    width: 1000px;
+    background-color: aliceblue;
+    padding: 40px;
+    cursor: grab;
+    user-select: none;
+}
+
+#map.ui-draggable-dragging { cursor: grabbing; }
+
+.floor {
+    position: absolute;
+    display: block;
+    z-index: 2;
+    animation: 250ms 1 showup;
+}
+
+.floor.reverse {
+    animation-name: 1 showdown;
+}
+
+@keyframes showup {
+    from {
+        transform: translate(0px, 50px);
+        opacity: 0%;
+    }
+    to {
+        transform: translate(0px, 0px);
+        opacity: 100%;
+    }
+}
+
+@keyframes showdown {
+    from {
+        transform: translate(0px, -50px);
+        opacity: 0%;
+    }
+    to {
+        transform: translate(0px, 0px);
+        opacity: 100%;
+    }
+}
+
+.floor.hide {
+    display: none;
+    z-index: 1;
+    animation: 500ms 1 hideup;
+}
+
+.floor.hide.reverse {
+    animation-name: hidedown;
+}
+
+@keyframes hideup {
+    from {
+        transform: translate(0px, 0px);
+        opacity: 100%;
+        display: block;
+    }
+    to {
+        transform: translate(0px, -50px);
+        opacity: 0%;
+    }
+}
+
+@keyframes hidedown {
+    from {
+        transform: translate(0px, 0px);
+        opacity: 100%;
+        display: block;
+    }
+    to {
+        transform: translate(0px, 50px);
+        opacity: 0%;
+    }
+}
+
+.room {
+    cursor: pointer;
+}
+
+.room polygon {
+    /* fill-rule: evenodd;
+    clip-rule: evenodd; */
+    fill: #F37F81;
+    stroke: #E6E6E5;
+    stroke-width: 0.4799;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 22.9256;
+}
+
+.room:hover polygon {
+    fill: #d75456;
+}
+
+.room.selected polygon{
+    stroke: #0e9ff3;
+    stroke-width: 1.4799;
+}
+
+.room text {
+    fill: #331b1b;
+    text-anchor: middle;
+}
+
+.room:hover text {
+    fill: #B1E2F4;
+}

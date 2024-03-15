@@ -1,0 +1,10 @@
+https://en.anyquestion.info/a/step-by-step-guide-creating-an-svg-based-interactive-map-in-flutter
+
+# КТО КРУЧЕ???
+- [X] https://github.com/Navigine/Indoor-Navigation-Flutter-SDK/tree/main/example
+- [V] https://developers.woosmap.com/products/indoor-api/indoor-js-api/indoor-js-widget/
+- [?] https://situm.com/docs/mobile-sdks-introduction-requirements-code-examples-and-more/
+
+- [ ] https://www.mappedin.com/industries/schools/
+
+OpenServer

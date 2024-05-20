@@ -76,8 +76,7 @@ document.body.addEventListener('mousedown', event => {
     start_y = event.pageY;
 })
 
-const bg = document.getElementById('bg')
-bg.addEventListener('mouseup', event => {
+map.addEventListener('mouseup', event => {
     let diffX = Math.abs(event.pageX - start_x);
     let diffY = Math.abs(event.pageY - start_y);
     if (diffX < delta && diffY < delta) {
@@ -144,8 +143,8 @@ function downFloor() {
 }
 
 function changeFloor(next_floor) {
-    const current = document.getElementById('f'+current_floor);
-    const next = document.getElementById('f'+next_floor);
+    let current = document.getElementById('f'+current_floor);
+    let next = document.getElementById('f'+next_floor);
 
     if (next_floor > current_floor) {
         current.classList.add('reverse');
@@ -161,3 +160,7 @@ function changeFloor(next_floor) {
 
     current_floor = next_floor;
 }
+
+// fetch('http://localhost/api/info?room=')
+//     .then((response) => response.json())
+//     .then((json) => console.log(json));

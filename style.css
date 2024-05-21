@@ -3,6 +3,10 @@ body {
     overflow: hidden;
 }
 
+.fa {
+    font-size: 32px;
+}
+
 /* = Стили интерфейса ================================== *\
 \* ===================================================== */
 
@@ -13,17 +17,29 @@ body {
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-
     background-color: #7fbbf3;
     user-select: none;
     z-index: 3;
 }
 
-.align-right {
-    right: 0;
+.align-right { right: 0; }
+.align-bottom { bottom: 0; }
+
+.dir-row { flex-direction: row; }
+.dir-column { flex-direction: column; }
+
+.search {
+    flex-direction: column;
 }
-.align-bottom {
-    bottom: 0;
+
+#info {
+    flex-direction: column;
+    bottom: 0%;
+}
+
+#extra { 
+    flex-direction: row;
+    right: 0%;
 }
 
 /* = Стили карты ======================================= *\
@@ -123,7 +139,7 @@ polygon, rect {
     stroke: #000000;
     stroke-width: 3;
     stroke-linecap: square;
-    stroke-linejoin: square;
+    stroke-linejoin: miter;
     stroke-miterlimit: 25;
 }
 
@@ -151,4 +167,8 @@ text {
 }
 .room:hover text {
     fill: #B1E2F4;
+}
+
+.selected polygon, .selected rect {
+    fill: #e0a1a2;
 }

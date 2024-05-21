@@ -2,19 +2,19 @@
 -[ ] Ивенты вынести отдельно ай гуесс
 \* ===================================================== */
 
-let map_width = 800;
-let map_height = 600;
+const urlParams = new URLSearchParams(window.location.search);
+linked_room = urlParams.get('room')
 
-data = {
-    "r101": {
-        "name": "Sus"
-    },
-    "r102": {
-        "name": "Amogus"
-    }
-}
+data = {}
 
+fetch(window.location.origin+'/api/rooms')
+    .then((response) => response.json())
+    .then((json) => data = json);
 
+const canvas = document.getElementById('canvas');
+const map = document.getElementById('map');
+const map_width = parseInt(map.style.width);
+const map_height = parseInt(map.style.height);
 
 /* = Перемещение карты ================================= *\
 \* ===================================================== */
@@ -24,6 +24,18 @@ $( function() {
         { scroll: false }
     )
 });
+
+function goToRoom(room_id) {
+    let room = document.getElementById(room_id)
+
+    let x = room.children[1].getAttribute("x");
+    let y = room.children[1].getAttribute("y");
+
+    let floor = parseInt(room.parentElement.id[1])
+    changeFloor(floor)
+    map.style.left = (map_width/2 - x)+'px';
+    map.style.top = (map_height/2 - y)+'px';
+}
 
 /* = Масштабирование карты ============================= *\
 \* ===================================================== */
@@ -35,8 +47,6 @@ let current_zoom = 1;
 
 let scroll_timeout = false;
 
-const canvas = document.getElementById('canvas');
-const map = document.getElementById('map');
 canvas.addEventListener('wheel', event => {
     if (scroll_timeout == true) { return; }
     
@@ -65,11 +75,14 @@ function zoom(new_zoom) {
 /* = Выбор комнаты ===================================== *\
 \* ===================================================== */
 
-let selected = '';
-
+const info = document.getElementById('info');
+const info_img = document.getElementById('info_img');
+const info_name = document.getElementById('info_name');
+const info_desc = document.getElementById('info_desc');
 const delta = 6;
 let start_x;
 let start_y;
+let block = false
 
 document.body.addEventListener('mousedown', event => {
     start_x = event.pageX;
@@ -81,9 +94,8 @@ map.addEventListener('mouseup', event => {
     let diffY = Math.abs(event.pageY - start_y);
     if (diffX < delta && diffY < delta) {
         deselect();
-        console.log("- deselected -");
     }
-})
+});
 
 const rooms = document.querySelectorAll('.room');
 rooms.forEach((room) => {
@@ -94,27 +106,38 @@ rooms.forEach((room) => {
             select(event);
         }
     })
-    room.addEventListener('keyup', event => {
-        if (event.key == 'Enter') {
-            select(event);
-        }
-    });
 });
 
-
 function deselect() {
-    if (selected) {
-        document.getElementById(selected).classList.remove('selected');
+    if (!block) {
+        document.querySelectorAll('.selected').forEach(element => {
+            element.classList.remove('selected');
+        });
+        info.style.display = 'none';
     }
+    block = false;
 }
 
 function select(event) {
     deselect();
-    selected = event.currentTarget.id;
-    document.getElementById(selected).classList.add('selected');
+    event.currentTarget.classList.add('selected');
+    loadInfo(event.currentTarget.dataset.room)
+    info.style.display = 'block';
+    block = true;
+    // document.getElementById(selected).classList.add('selected');
     
     //TODO сделать вывод информации!!!
-    console.log(data[selected]['name']);
+    // console.log(data[selected]['name']);
+}
+
+function loadInfo(room) {
+    if (room) {
+        if (data[room].img) {
+            info_img.src = 'img/room/'+data[room].img;
+        }
+        info_name.innerText = data[room].name;
+        info_desc.innerHTML = data[room].desc;
+    }
 }
 
 /* = Переключение этажа ================================ *\
@@ -161,6 +184,38 @@ function changeFloor(next_floor) {
     current_floor = next_floor;
 }
 
-// fetch('http://localhost/api/info?room=')
-//     .then((response) => response.json())
-//     .then((json) => console.log(json));
+/* = Поиск этажа ======================================= *\
+\* ===================================================== */
+
+const search = document.getElementById('search')
+const suggestions = document.getElementById('suggestions');
+
+function findRoom() {
+    const query = search.value.toLowerCase();
+    if (query == '') {
+        suggestions.innerHTML = '';
+        return;
+    }
+    const results = Object.values(data).filter( value =>
+        value.name.toLowerCase().indexOf(query) >= 0
+    );
+    updateResults(results);
+}
+
+function updateResults(results) {
+    suggestions.innerHTML = '';
+    results.forEach(room => {
+        const roomElement = document.createElement('div');
+        roomElement.textContent = room.name;
+        roomElement.className = 'suggestion';
+        roomElement.onclick = () => selectRoom(room.name);
+        suggestions.appendChild(roomElement);
+    });
+}
+
+/* = Пост ======================================= *\
+\* ===================================================== */
+
+if (linked_room) {
+    goToRoom(linked_room);
+}

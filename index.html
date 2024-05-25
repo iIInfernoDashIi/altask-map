@@ -34,56 +34,86 @@
             </svg>
             <svg id="f3" class="floor hide" width="910" height="650" xmlns="http://www.w3.org/2000/svg">
                 <polygon class="back" points="0,270 220,270 220,490 280,490 280,450 530,450 530,490 590,490 750,330 750,270 710,270 710,0 910,0 910,380 880,380 880,460 905,485 745,645 720,620 640,620 640,650 280,650 280,590 220,590 220,630 0,630"></polygon>
-                <g class="room" data-room="gym" id="gym">
+                <g class="room" id="gym">
                     <rect x="10" y="280" width="200" height="340"/>
                     <text x="110" y="450">Спорт зал</text>
                 </g>
                 <g class="stairs">
                     <rect x="220" y="500" width="60" height="40"/>
                 </g>
-                <g class="room">
+                <g class="room" id="314">
                     <rect x="220" y="540" width="60" height="40"/>
                     <text x="250" y="560">314</text>
                 </g>
-                <g class="room">
+                <g class="misc">
                     <rect x="290" y="460" width="60" height="70"/>
                 </g>
                 <g class="stairs">
                     <rect x="350" y="460" width="40" height="70"/>
                 </g>
-                <g class="room">
+                <g class="room" id="312">
                     <rect x="390" y="460" width="45" height="70"/>
                     <text x="412.5" y="495">312</text>
                 </g>
-                <g class="room">
-                    <rect x="435" y="460" width="40" height="70"/>
+                <g class="room" id="310">
+                    <rect x="435" y="460" width="85" height="70"/>
+                    <text x="477.5" y="495">310</text>
                 </g>
-                <g class="room">
-                    <rect x="475" y="460" width="45" height="70"/>
-                    <text x="497.5" y="495">310</text>
-                </g>
-                <g class="room" data-room="321">
+                <g class="room" id="321">
                     <rect x="290" y="570" width="60" height="70"/>
                     <text x="320" y="605">321</text>
                 </g>
-                <g class="room" data-room="319">
+                <g class="room" id="319">
                     <rect x="350" y="570" width="120" height="70"/>
                     <text x="410" y="605">319</text>
                 </g>
-                <g class="room" data-room="317">
+                <g class="room" id="317">
                     <rect x="470" y="570" width="120" height="70"/>
                     <text x="530" y="605">317</text>
                 </g>
-                <g class="room">
+                <g class="room" id="lab">
                     <rect x="590" y="570" width="40" height="70"/>
                     <text x="610" y="605">Лаб.</text>
                 </g>
-                <g class="room">
-                    <polygon x="640" y="570" points="640,570 640,610 710,610 670,570"></polygon>
+                <g class="room" id="313">
+                    <polygon points="640,570 640,610 710,610 670,570"></polygon>
                     <text x="660" y="590">313</text>
                 </g>
                 <g class="corridor">
-                    <polygon points="290,530 530,530 530,500 600,500 670,570 290,570"></polygon>
+                    <polygon points="290,530 530,530 530,500 600,500 640,540 800,380 760,340 760,270 790,270 790,10 830,10 830,410 670,570 290,570"></polygon>
+                </g>
+                <g class="misc">
+                    <rect x="720" y="10" width="70" height="30"/>
+                </g>
+                <g class="stairs">
+                    <rect x="720" y="40" width="70" height="40"/>
+                </g>
+                <g class="room" id="302">
+                    <rect x="720" y="80" width="70" height="80"/>
+                </g>
+                <g class="room" id="304">
+                    <rect x="720" y="160" width="70" height="100"/>
+                </g>
+                <g class="room" id="301">
+                    <rect x="830" y="10" width="70" height="110"/>
+                </g>
+                <g class="room" id="303">
+                    <rect x="830" y="120" width="70" height="40"/>
+                </g>
+                <g class="room" id="305">
+                    <rect x="830" y="160" width="70" height="100"/>
+                </g>
+                <g class="room" id="307">
+                    <rect x="830" y="270" width="70" height="70"/>
+                </g>
+                <g class="room" id="309">
+                    <polygon points="830,340 830,410 870,450 870,370 900,370 900,340"></polygon>
+                </g>
+                <g class="room" id="308">
+                    <polygon points="605,495 630,470 670,510 645,535"></polygon>
+                </g>
+                <g class="room" id="306">
+                    <polygon points="605,495 630,470 670,510 645,535"></polygon>
                 </g>
             </svg>
             <svg id="f4" class="floor hide" width="910" height="650" xmlns="http://www.w3.org/2000/svg">
@@ -103,9 +133,10 @@
     <div class="float-container search">
         <span>
             <input type="text" id="search" name="room-search" onkeyup="findRoom()" size="30" placeholder="Поиск аудитории">
-            <button id="bookmarks"><i class="fa fa-bookmark" aria-hidden="true"></i></button>
+            <i class="fa fa-bookmark" aria-hidden="true"></i>
         </span>
         <div id="suggestions"></div>
+        <div id="bookmarks"></div>
     </div>
 
     <div class="float-container" id="info">

@@ -3,13 +3,14 @@
 \* ===================================================== */
 
 const urlParams = new URLSearchParams(window.location.search);
-linked_room = urlParams.get('room')
 
-data = {}
-
+let data = {}
 fetch(window.location.origin+'/api/rooms')
     .then((response) => response.json())
     .then((json) => data = json);
+
+let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+
 
 const canvas = document.getElementById('canvas');
 const map = document.getElementById('map');
@@ -103,7 +104,7 @@ rooms.forEach((room) => {
         let diffX = Math.abs(event.pageX - start_x);
         let diffY = Math.abs(event.pageY - start_y);
         if (diffX < delta && diffY < delta) {
-            select(event);
+            select(event.currentTarget);
         }
     })
 });
@@ -118,10 +119,10 @@ function deselect() {
     block = false;
 }
 
-function select(event) {
+function select(room) {
     deselect();
-    event.currentTarget.classList.add('selected');
-    loadInfo(event.currentTarget.dataset.room)
+    room.classList.add('selected');
+    loadInfo(room.id)
     info.style.display = 'block';
     block = true;
     // document.getElementById(selected).classList.add('selected');
@@ -213,9 +214,42 @@ function updateResults(results) {
     });
 }
 
-/* = Пост ======================================= *\
+/* = Закладки ========================================== *\
 \* ===================================================== */
 
+const bookmarks_list = document.getElementById('bookmarks');
+
+function addBookmark() {
+    const room = document.querySelector('.selected').id;
+    if (room && !bookmarks.includes(room)) {
+        bookmarks.push(room);
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        updateBookmarks();
+    }
+}
+
+function updateBookmarks() {
+    bookmarks_list.innerHTML = '';
+    bookmarks.forEach(item => {
+        const bookmark = document.createElement('div');
+        bookmark.textContent = data[item].name;
+        bookmark.className = 'bookmark';
+        bookmark.onclick = () => {
+            deselect()
+            select(document.getElementById(item))
+            goToRoom(item)
+        };
+        bookmarks_list.appendChild(bookmark);
+
+    });
+}
+
+/* = Пост ============================================== *\
+\* ===================================================== */
+
+linked_room = urlParams.get('room')
 if (linked_room) {
     goToRoom(linked_room);
 }
+
+updateBookmarks()

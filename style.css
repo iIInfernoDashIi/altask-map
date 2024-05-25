@@ -158,6 +158,10 @@ text {
     fill: #8ff37f;
 }
 
+.misc polygon, .misc rect {
+    fill: #f1f37f;
+}
+
 .room polygon, .room rect {
     fill: #F37F81;
     cursor: pointer;

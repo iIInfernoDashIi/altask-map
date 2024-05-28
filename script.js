@@ -5,9 +5,14 @@
 const urlParams = new URLSearchParams(window.location.search);
 
 let data = {}
-fetch(window.location.origin+'/api/rooms')
-    .then((response) => response.json())
-    .then((json) => data = json);
+// fetch(window.location.origin+'/api/rooms')
+//     .then((response) => response.json())
+//     .then((json) => data = json);
+
+//альтернатива для гитхаба
+$.getJSON( "/room_data.json", function(json) {
+    data = json;
+});
 
 let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
 

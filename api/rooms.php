@@ -22,5 +22,4 @@ http_response_code(200); //OK
 echo json_encode($data);
 exit();
 
-
 ?>

@@ -5,6 +5,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 
 let data = {}
+data = json;
 
 let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
 
